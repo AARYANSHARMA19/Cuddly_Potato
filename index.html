@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Management Console</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="aws-header">
+        <div class="header-content">
+            <div class="logo">
+                <h1>🌩️ AWS Management Console</h1>
+            </div>
+            <nav class="main-nav">
+                <span class="user-info">👤 Admin User</span>
+                <span class="region">🌍 us-east-1</span>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <nav class="service-nav">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#dashboard" class="nav-link active" data-section="dashboard">📊 Dashboard</a></li>
+                    <li><a href="#ec2" class="nav-link" data-section="ec2">💻 EC2 (Compute)</a></li>
+                    <li><a href="#vpc" class="nav-link" data-section="vpc">🌐 VPC (Networking)</a></li>
+                    <li><a href="#rds" class="nav-link" data-section="rds">🗄️ RDS (Database)</a></li>
+                    <li><a href="#elb" class="nav-link" data-section="elb">⚖️ Load Balancers</a></li>
+                    <li><a href="#route53" class="nav-link" data-section="route53">🔗 Route 53 (DNS)</a></li>
+                    <li><a href="#architecture" class="nav-link" data-section="architecture">🏗️ Multi-Tier Architecture</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="content-section active">
+                <h2>AWS Dashboard</h2>
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3>EC2 Instances</h3>
+                        <div class="metric">
+                            <span class="number">12</span>
+                            <span class="label">Running Instances</span>
+                        </div>
+                        <div class="status">
+                            <span class="status-item">✅ 10 Healthy</span>
+                            <span class="status-item">⚠️ 2 Warning</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>VPCs & Networking</h3>
+                        <div class="metric">
+                            <span class="number">5</span>
+                            <span class="label">VPCs Configured</span>
+                        </div>
+                        <div class="status">
+                            <span class="status-item">15 Subnets</span>
+                            <span class="status-item">8 Security Groups</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>RDS Databases</h3>
+                        <div class="metric">
+                            <span class="number">6</span>
+                            <span class="label">Active Databases</span>
+                        </div>
+                        <div class="status">
+                            <span class="status-item">✅ All Available</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Load Balancers</h3>
+                        <div class="metric">
+                            <span class="number">4</span>
+                            <span class="label">Active Load Balancers</span>
+                        </div>
+                        <div class="status">
+                            <span class="status-item">2 ALB</span>
+                            <span class="status-item">2 ELB</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EC2 Section -->
+            <section id="ec2" class="content-section">
+                <h2>EC2 - Elastic Compute Cloud</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary" onclick="createInstance()">➕ Launch Instance</button>
+                    <button class="btn btn-secondary">🔄 Refresh</button>
+                </div>
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Instance ID</th>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>State</th>
+                                <th>Availability Zone</th>
+                                <th>Public IP</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ec2-instances">
+                            <tr>
+                                <td>i-0abc123def456</td>
+                                <td>web-server-01</td>
+                                <td>t3.medium</td>
+                                <td><span class="badge running">Running</span></td>
+                                <td>us-east-1a</td>
+                                <td>54.123.45.67</td>
+                                <td>
+                                    <button class="btn-action" title="Stop">⏸️</button>
+                                    <button class="btn-action" title="Terminate">🗑️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>i-0xyz789abc012</td>
+                                <td>app-server-01</td>
+                                <td>t3.large</td>
+                                <td><span class="badge running">Running</span></td>
+                                <td>us-east-1b</td>
+                                <td>54.234.56.78</td>
+                                <td>
+                                    <button class="btn-action" title="Stop">⏸️</button>
+                                    <button class="btn-action" title="Terminate">🗑️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>i-0mno345pqr678</td>
+                                <td>db-server-01</td>
+                                <td>r5.xlarge</td>
+                                <td><span class="badge running">Running</span></td>
+                                <td>us-east-1c</td>
+                                <td>54.345.67.89</td>
+                                <td>
+                                    <button class="btn-action" title="Stop">⏸️</button>
+                                    <button class="btn-action" title="Terminate">🗑️</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- VPC Section -->
+            <section id="vpc" class="content-section">
+                <h2>VPC - Virtual Private Cloud</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary" onclick="createVPC()">➕ Create VPC</button>
+                    <button class="btn btn-secondary">🔄 Refresh</button>
+                </div>
+                
+                <div class="subsection">
+                    <h3>VPCs</h3>
+                    <div class="data-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>VPC ID</th>
+                                    <th>Name</th>
+                                    <th>CIDR Block</th>
+                                    <th>State</th>
+                                    <th>Subnets</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>vpc-0abc123def456</td>
+                                    <td>production-vpc</td>
+                                    <td>10.0.0.0/16</td>
+                                    <td><span class="badge available">Available</span></td>
+                                    <td>6</td>
+                                    <td>
+                                        <button class="btn-action" title="Edit">✏️</button>
+                                        <button class="btn-action" title="Delete">🗑️</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>vpc-0xyz789abc012</td>
+                                    <td>staging-vpc</td>
+                                    <td>10.1.0.0/16</td>
+                                    <td><span class="badge available">Available</span></td>
+                                    <td>4</td>
+                                    <td>
+                                        <button class="btn-action" title="Edit">✏️</button>
+                                        <button class="btn-action" title="Delete">🗑️</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3>Subnets</h3>
+                    <div class="data-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Subnet ID</th>
+                                    <th>Name</th>
+                                    <th>VPC</th>
+                                    <th>CIDR Block</th>
+                                    <th>Availability Zone</th>
+                                    <th>Available IPs</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>subnet-0abc123</td>
+                                    <td>public-subnet-1a</td>
+                                    <td>production-vpc</td>
+                                    <td>10.0.1.0/24</td>
+                                    <td>us-east-1a</td>
+                                    <td>251</td>
+                                </tr>
+                                <tr>
+                                    <td>subnet-0xyz789</td>
+                                    <td>private-subnet-1b</td>
+                                    <td>production-vpc</td>
+                                    <td>10.0.2.0/24</td>
+                                    <td>us-east-1b</td>
+                                    <td>248</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3>Security Groups</h3>
+                    <div class="data-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Security Group ID</th>
+                                    <th>Name</th>
+                                    <th>VPC</th>
+                                    <th>Description</th>
+                                    <th>Inbound Rules</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sg-0abc123def</td>
+                                    <td>web-tier-sg</td>
+                                    <td>production-vpc</td>
+                                    <td>Security group for web tier</td>
+                                    <td>HTTP (80), HTTPS (443)</td>
+                                    <td>
+                                        <button class="btn-action" title="Edit Rules">✏️</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>sg-0xyz789abc</td>
+                                    <td>app-tier-sg</td>
+                                    <td>production-vpc</td>
+                                    <td>Security group for app tier</td>
+                                    <td>Custom TCP (8080)</td>
+                                    <td>
+                                        <button class="btn-action" title="Edit Rules">✏️</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>sg-0mno345pqr</td>
+                                    <td>db-tier-sg</td>
+                                    <td>production-vpc</td>
+                                    <td>Security group for database tier</td>
+                                    <td>MySQL (3306)</td>
+                                    <td>
+                                        <button class="btn-action" title="Edit Rules">✏️</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RDS Section -->
+            <section id="rds" class="content-section">
+                <h2>RDS - Relational Database Service</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary" onclick="createDatabase()">➕ Create Database</button>
+                    <button class="btn btn-secondary">🔄 Refresh</button>
+                </div>
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>DB Instance ID</th>
+                                <th>Engine</th>
+                                <th>Version</th>
+                                <th>Instance Class</th>
+                                <th>Status</th>
+                                <th>Storage</th>
+                                <th>Endpoint</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>prod-db-01</td>
+                                <td>MySQL</td>
+                                <td>8.0.32</td>
+                                <td>db.r5.large</td>
+                                <td><span class="badge available">Available</span></td>
+                                <td>100 GB</td>
+                                <td>prod-db-01.abc123.us-east-1.rds.amazonaws.com</td>
+                                <td>
+                                    <button class="btn-action" title="Stop">⏸️</button>
+                                    <button class="btn-action" title="Delete">🗑️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>prod-db-02</td>
+                                <td>PostgreSQL</td>
+                                <td>14.7</td>
+                                <td>db.r5.xlarge</td>
+                                <td><span class="badge available">Available</span></td>
+                                <td>200 GB</td>
+                                <td>prod-db-02.xyz789.us-east-1.rds.amazonaws.com</td>
+                                <td>
+                                    <button class="btn-action" title="Stop">⏸️</button>
+                                    <button class="btn-action" title="Delete">🗑️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>staging-db-01</td>
+                                <td>MySQL</td>
+                                <td>8.0.32</td>
+                                <td>db.t3.medium</td>
+                                <td><span class="badge available">Available</span></td>
+                                <td>50 GB</td>
+                                <td>staging-db-01.mno345.us-east-1.rds.amazonaws.com</td>
+                                <td>
+                                    <button class="btn-action" title="Stop">⏸️</button>
+                                    <button class="btn-action" title="Delete">🗑️</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ELB Section -->
+            <section id="elb" class="content-section">
+                <h2>Load Balancers</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary" onclick="createLoadBalancer()">➕ Create Load Balancer</button>
+                    <button class="btn btn-secondary">🔄 Refresh</button>
+                </div>
+                <div class="data-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Type</th>
+                                <th>DNS Name</th>
+                                <th>State</th>
+                                <th>VPC</th>
+                                <th>Availability Zones</th>
+                                <th>Target Groups</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>web-tier-alb</td>
+                                <td><span class="badge alb">ALB</span></td>
+                                <td>web-tier-alb-123456.us-east-1.elb.amazonaws.com</td>
+                                <td><span class="badge active">Active</span></td>
+                                <td>production-vpc</td>
+                                <td>us-east-1a, us-east-1b</td>
+                                <td>web-servers</td>
+                                <td>
+                                    <button class="btn-action" title="Edit">✏️</button>
+                                    <button class="btn-action" title="Delete">🗑️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>app-tier-alb</td>
+                                <td><span class="badge alb">ALB</span></td>
+                                <td>app-tier-alb-789012.us-east-1.elb.amazonaws.com</td>
+                                <td><span class="badge active">Active</span></td>
+                                <td>production-vpc</td>
+                                <td>us-east-1a, us-east-1b, us-east-1c</td>
+                                <td>app-servers</td>
+                                <td>
+                                    <button class="btn-action" title="Edit">✏️</button>
+                                    <button class="btn-action" title="Delete">🗑️</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>legacy-elb</td>
+                                <td><span class="badge elb">ELB</span></td>
+                                <td>legacy-elb-345678.us-east-1.elb.amazonaws.com</td>
+                                <td><span class="badge active">Active</span></td>
+                                <td>production-vpc</td>
+                                <td>us-east-1a, us-east-1b</td>
+                                <td>N/A</td>
+                                <td>
+                                    <button class="btn-action" title="Edit">✏️</button>
+                                    <button class="btn-action" title="Delete">🗑️</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Route 53 Section -->
+            <section id="route53" class="content-section">
+                <h2>Route 53 - DNS Management</h2>
+                <div class="section-actions">
+                    <button class="btn btn-primary" onclick="createHostedZone()">➕ Create Hosted Zone</button>
+                    <button class="btn btn-secondary">🔄 Refresh</button>
+                </div>
+                
+                <div class="subsection">
+                    <h3>Hosted Zones</h3>
+                    <div class="data-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Hosted Zone ID</th>
+                                    <th>Domain Name</th>
+                                    <th>Type</th>
+                                    <th>Record Count</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Z1ABC123DEF456</td>
+                                    <td>example.com</td>
+                                    <td>Public</td>
+                                    <td>8</td>
+                                    <td>
+                                        <button class="btn-action" title="View Records">👁️</button>
+                                        <button class="btn-action" title="Delete">🗑️</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Z2XYZ789GHI012</td>
+                                    <td>staging.example.com</td>
+                                    <td>Public</td>
+                                    <td>5</td>
+                                    <td>
+                                        <button class="btn-action" title="View Records">👁️</button>
+                                        <button class="btn-action" title="Delete">🗑️</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="subsection">
+                    <h3>DNS Records - example.com</h3>
+                    <div class="data-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Routing Policy</th>
+                                    <th>TTL</th>
+                                    <th>Value</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>example.com</td>
+                                    <td>A</td>
+                                    <td>Simple</td>
+                                    <td>300</td>
+                                    <td>54.123.45.67</td>
+                                    <td>
+                                        <button class="btn-action" title="Edit">✏️</button>
+                                        <button class="btn-action" title="Delete">🗑️</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>www.example.com</td>
+                                    <td>CNAME</td>
+                                    <td>Simple</td>
+                                    <td>300</td>
+                                    <td>web-tier-alb-123456.us-east-1.elb.amazonaws.com</td>
+                                    <td>
+                                        <button class="btn-action" title="Edit">✏️</button>
+                                        <button class="btn-action" title="Delete">🗑️</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>api.example.com</td>
+                                    <td>CNAME</td>
+                                    <td>Weighted</td>
+                                    <td>60</td>
+                                    <td>app-tier-alb-789012.us-east-1.elb.amazonaws.com</td>
+                                    <td>
+                                        <button class="btn-action" title="Edit">✏️</button>
+                                        <button class="btn-action" title="Delete">🗑️</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Multi-Tier Architecture Section -->
+            <section id="architecture" class="content-section">
+                <h2>Multi-Tier Architecture</h2>
+                <p class="section-description">Visualize and manage your three-tier application architecture: Web Tier → Application Tier → Database Tier</p>
+                
+                <div class="architecture-diagram">
+                    <div class="tier web-tier">
+                        <h3>🌐 Web Tier</h3>
+                        <div class="tier-content">
+                            <div class="component">
+                                <strong>Load Balancer:</strong> web-tier-alb
+                            </div>
+                            <div class="component">
+                                <strong>Security Group:</strong> web-tier-sg
+                                <div class="rule">• Allow HTTP (80)</div>
+                                <div class="rule">• Allow HTTPS (443)</div>
+                            </div>
+                            <div class="component">
+                                <strong>EC2 Instances:</strong>
+                                <div class="instance">• web-server-01 (t3.medium)</div>
+                                <div class="instance">• web-server-02 (t3.medium)</div>
+                            </div>
+                            <div class="component">
+                                <strong>Subnet:</strong> public-subnet-1a (10.0.1.0/24)
+                            </div>
+                        </div>
+                        <div class="tier-arrow">⬇️</div>
+                    </div>
+
+                    <div class="tier app-tier">
+                        <h3>⚙️ Application Tier</h3>
+                        <div class="tier-content">
+                            <div class="component">
+                                <strong>Load Balancer:</strong> app-tier-alb
+                            </div>
+                            <div class="component">
+                                <strong>Security Group:</strong> app-tier-sg
+                                <div class="rule">• Allow Custom TCP (8080) from Web Tier</div>
+                            </div>
+                            <div class="component">
+                                <strong>EC2 Instances:</strong>
+                                <div class="instance">• app-server-01 (t3.large)</div>
+                                <div class="instance">• app-server-02 (t3.large)</div>
+                                <div class="instance">• app-server-03 (t3.large)</div>
+                            </div>
+                            <div class="component">
+                                <strong>Subnet:</strong> private-subnet-1b (10.0.2.0/24)
+                            </div>
+                        </div>
+                        <div class="tier-arrow">⬇️</div>
+                    </div>
+
+                    <div class="tier db-tier">
+                        <h3>🗄️ Database Tier</h3>
+                        <div class="tier-content">
+                            <div class="component">
+                                <strong>Security Group:</strong> db-tier-sg
+                                <div class="rule">• Allow MySQL (3306) from App Tier</div>
+                            </div>
+                            <div class="component">
+                                <strong>RDS Instance:</strong>
+                                <div class="instance">• prod-db-01 (db.r5.large, MySQL 8.0)</div>
+                                <div class="instance">• Multi-AZ: Enabled</div>
+                                <div class="instance">• Read Replica: prod-db-01-replica</div>
+                            </div>
+                            <div class="component">
+                                <strong>Subnet:</strong> private-subnet-1c (10.0.3.0/24)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="architecture-details">
+                    <h3>Architecture Configuration</h3>
+                    <div class="config-grid">
+                        <div class="config-item">
+                            <strong>VPC:</strong> production-vpc (10.0.0.0/16)
+                        </div>
+                        <div class="config-item">
+                            <strong>Region:</strong> us-east-1
+                        </div>
+                        <div class="config-item">
+                            <strong>Availability Zones:</strong> us-east-1a, us-east-1b, us-east-1c
+                        </div>
+                        <div class="config-item">
+                            <strong>DNS:</strong> www.example.com → web-tier-alb
+                        </div>
+                        <div class="config-item">
+                            <strong>Internet Gateway:</strong> igw-0abc123def
+                        </div>
+                        <div class="config-item">
+                            <strong>NAT Gateway:</strong> nat-0xyz789abc (for private subnets)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-actions">
+                    <button class="btn btn-primary" onclick="deployArchitecture()">🚀 Deploy Architecture</button>
+                    <button class="btn btn-secondary" onclick="exportArchitecture()">📥 Export Configuration</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
