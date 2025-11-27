@@ -1,0 +1,14 @@
+{
+  "systemName": "Node-A17",
+  "os": "Linux",
+  "version": "6.5.2",
+  "services": {
+    "ssh": true,
+    "ftp": false,
+    "http": true,
+    "database": true
+  },
+  "maxConnections": 512,
+  "timeoutSeconds": 120,
+  "debugMode": false
+}

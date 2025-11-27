@@ -1,0 +1,10 @@
+{
+  "deviceId": "SENSOR-19A",
+  "temperature": 23.6,
+  "humidity": 41.2,
+  "pressure": 1013.4,
+  "battery": 78,
+  "status": "online",
+  "alerts": [],
+  "timestamp": 1732694102
+}

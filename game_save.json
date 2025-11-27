@@ -1,0 +1,14 @@
+{
+  "player": "NeoKnight",
+  "level": 17,
+  "xp": 48290,
+  "health": 86,
+  "mana": 41,
+  "inventory": [
+    { "item": "Iron Sword", "durability": 72 },
+    { "item": "Healing Potion", "amount": 5 },
+    { "item": "Silver Shield", "durability": 54 }
+  ],
+  "questsCompleted": ["wolf_hunt", "lost_village", "dark_forest"],
+  "hardcoreMode": false
+}

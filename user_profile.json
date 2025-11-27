@@ -1,0 +1,10 @@
+{
+  "id": 84291,
+  "username": "shadow_fox",
+  "email": "shadow.fox@example.com",
+  "age": 24,
+  "isActive": true,
+  "score": 1875,
+  "skills": ["python", "linux", "networking"],
+  "lastLogin": "2025-11-27T09:14:22Z"
+}
