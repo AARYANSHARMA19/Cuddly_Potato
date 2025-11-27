@@ -1,0 +1,64 @@
+{
+  "orderId": "ORD-2025-0001",
+  "createdAt": "2025-11-27T20:15:00Z",
+
+  "customer": {
+    "id": 12345,
+    "name": "Aaryan Sharma",
+    "email": "aaryan.sharma@example.com",
+    "phone": "+36-30-123-4567",
+    "isVip": true
+  },
+
+  "items": [
+    {
+      "sku": "POTATO-DELUXE",
+      "name": "Cuddly Potato Plushie",
+      "quantity": 2,
+      "unitPrice": 19.99,
+      "currency": "EUR",
+      "tags": ["toy", "plush", "limited-edition"],
+      "giftWrap": true
+    },
+    {
+      "sku": "MUG-CAFFEINE",
+      "name": "Debugging Fuel Coffee Mug",
+      "quantity": 1,
+      "unitPrice": 9.5,
+      "currency": "EUR",
+      "tags": ["mug", "coffee"],
+      "giftWrap": false
+    }
+  ],
+
+  "shipping": {
+    "method": "standard",
+    "price": 4.99,
+    "currency": "EUR",
+    "address": {
+      "line1": "Example Street 42",
+      "line2": "Dorm Room 1337",
+      "city": "Budapest",
+      "postalCode": "1111",
+      "country": "HU"
+    },
+    "requiresSignature": false
+  },
+
+  "payment": {
+    "method": "card",
+    "paid": true,
+    "transactionId": "TXN-987654321",
+    "cardLast4": "4242"
+  },
+
+  "totals": {
+    "itemsTotal": 49.48,
+    "shippingTotal": 4.99,
+    "grandTotal": 54.47,
+    "currency": "EUR"
+  },
+
+  "status": "processing",
+  "notes": "Please deliver after 6 PM. If doorbell is broken, call phone."
+}
